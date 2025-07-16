@@ -32,7 +32,7 @@ public class attributes_methods {
         }
         public void getDetails() {
             System.out.println("Name: " +getName());
-            System.out.println("Balance: " +getbalance());
+            System.out.printf("Balance: %.2f\n" +getbalance());
         }
     }
     public static void main(String[] args) {
