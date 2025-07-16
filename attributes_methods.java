@@ -19,8 +19,9 @@ public class attributes_methods {
             if(money > 0) balance += money; //error handling
             else System.out.println("Amount is in -ve"); //log statement
         }
+        //error handling & log statements are V.Imp
         public boolean withdrawMoney(double amount) {
-            if(amount <= balance) {
+            if(amount <= balance) { //error handling
                 balance -= amount;
                 return true;
             }
