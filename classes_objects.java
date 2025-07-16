@@ -3,8 +3,8 @@ public class classes_objects {
     String name;
     int salary;
 
-    public void setName(String s) {
-        name = s;
+    public void setName(String n) {
+        name = n;
     }
 
     public void setSalary(int newSalary) {
