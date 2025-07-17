@@ -1,20 +1,17 @@
 public class classes_objects {
     static class Employee {
-    String name;
-    int salary;
-
-    public void setName(String n) {
-        name = n;
+        String name; //attributes/instance variables
+        int salary;
+        public void setName(String n) {
+            name = n;
+        }
+        public void setSalary(int newSalary) {
+            salary = newSalary;
+        }
+        public int getSalary() {
+            return salary;
+        }
     }
-
-    public void setSalary(int newSalary) {
-        salary = newSalary;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-}
     public static void main(String[] args) {
         Employee obj1 = new Employee();
         obj1.setName("Lando");
