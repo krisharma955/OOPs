@@ -39,14 +39,14 @@ public class constructors {
             this.money = money;
         }
         Account3(Account3 account) {
-            this(account.getName(), account.getMoney());
+            this(account.name, account.money);
         }
-        public String getName() {
-            return name;
-        }
-        public int getMoney() {
-            return money;
-        }
+        // public String getName() {
+        //     return name;
+        // }
+        // public int getMoney() {
+        //     return money;
+        // }
     }
     public static void main(String[] args) {
         // Account1 a = new Account1();
@@ -58,7 +58,7 @@ public class constructors {
 
         Account3 a3 = new Account3("lando", 1000);
         Account3 a4 = new Account3(a3);
-        System.out.println(a4.getMoney());
-        System.out.println(a4.getName());
+        System.out.println(a4.money);
+        System.out.println(a4.name);
     }
 }
