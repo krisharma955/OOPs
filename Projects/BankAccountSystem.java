@@ -1,8 +1,9 @@
 import java.util.*;
 
 public class BankAccountSystem {
-    public static class BankAccount extends Account{
-        protected static int accountNumber = 100;
+    public static class BankAccount extends Account implements AccountOperations{
+        private int accountNumber;
+        private static int accountNumberGenerator = 100;
         public String accountHolderName;
         protected double balance;
         public static int count = 0;
@@ -12,8 +13,9 @@ public class BankAccountSystem {
             this.accountHolderName = accountHolderName;
             // System.out.println("Enter Amount to be deposied: ");
             this.balance = balance;
-            accountNumber++;
+            this.accountNumber = ++accountNumberGenerator;
             System.out.println("Account Successfully Created.");
+            System.out.println("Your Account Number: " +accountNumber);
             System.out.println(balance+ " added successfully.");
             count++;
         }
@@ -57,9 +59,10 @@ public class BankAccountSystem {
             checkBalance();
         }
 
-        public int numberOfAccounts() {
+        public static int numberOfAccounts() { //static because count is static
             return count;
         }
+
     }
 
     public static class SavingsAccount extends BankAccount {
@@ -70,7 +73,6 @@ public class BankAccountSystem {
                 System.out.println("Account Opened Successfully.");
                 afterCharges();
                 showAccountDetails();
-                accountNumber++;
                 count++;
             }
             else {
@@ -106,37 +108,101 @@ public class BankAccountSystem {
         abstract void withdraw(double amount);
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    interface AccountOperations {
+        public void deposit(double amount);
+        public void withdraw(double amount);
+        public void checkBalance();
+        public void showAccountDetails();
+    }
 
-        BankAccount n1 = new BankAccount(sc.nextLine(), sc.nextDouble());
+    public static BankAccount findAccount(ArrayList<BankAccount> accounts, int accNumber) {
+            for(int i = 0; i<accounts.size(); i++) {
+                if(accounts.get(i).accountNumber == accNumber) {
+                    return accounts.get(i);
+                }
+            }
+            return null;
+    }
+
+    public static void Menu() {
+        System.out.println("Choose further operations: ");
+        System.out.println("1. Create New Account.");
+        System.out.println("2. Show Account Details.");
+        System.out.println("3. Deposit Money.");
+        System.out.println("4. Withdraw Money.");
+        System.out.println("5. Check Balance.");
+        System.out.println("6. To exit.");
+    }
+
+    public static void start() {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<BankAccount> accounts = new ArrayList<>();
 
         int choice = 1;
+        int accNum;
+        BankAccount acc;
         while(choice != 0) {
-            System.out.println("Choose further operations: ");
-            System.out.println("1. Show Account Details.");
-            System.out.println("2. Deposit Money.");
-            System.out.println("3. Withdraw Money.");
-            System.out.println("4. Check Balance.");
-            System.out.println("5. To exit enter 5.");
-
+            Menu();
             int ch = sc.nextInt();
             switch (ch) {
                 case 1:
-                    n1.showAccountDetails();
+                    System.out.println("Enter the Account Holder's Name: ");
+                    sc.nextLine();
+                    String name = sc.nextLine();
+                    System.out.println("Enter Initial Deposit: ");
+                    double balance = sc.nextDouble();
+                    BankAccount newAccount = new BankAccount(name, balance);
+                    accounts.add(newAccount);
                     break;
                 case 2:
-                    System.out.println("Enter the money to be deposited: ");
-                    n1.deposit(sc.nextDouble());
+                    System.out.println("Enter Account Number: ");
+                    accNum = sc.nextInt();
+                    acc = findAccount(accounts, accNum);
+                    if(acc != null) {
+                        System.out.println("Enter the amount to be deposited: ");
+                        acc.deposit(sc.nextDouble());
+                    }
+                    else {
+                        System.out.println("Account not found.");
+                    }
                     break;
                 case 3:
-                    System.out.println("Enter the money to be withdrawn: ");
-                    n1.withdraw(sc.nextDouble());
+                    System.out.println("Enter Account Number: ");
+                    accNum = sc.nextInt();
+                    acc = findAccount(accounts, accNum);
+                    if(acc != null) {
+                        System.out.println("Enter Money to be Deposited: ");
+                        acc.deposit(sc.nextDouble());
+                    }
+                    else {
+                        System.out.println("Account not found.");
+                    }
                     break;
                 case 4:
-                    n1.checkBalance();
+                    System.out.println("Enter Account Number: ");
+                    accNum = sc.nextInt();
+                    acc = findAccount(accounts, accNum);
+                    if(acc != null) {
+                        System.out.println("Enter Money to be Withdrawn: ");
+                        acc.withdraw(sc.nextDouble());
+                    }
+                    else {
+                        System.out.println("Account not found.");
+                    }
                     break;
                 case 5:
+                    System.out.println("Enter Account Number: ");
+                    accNum = sc.nextInt();
+                    acc = findAccount(accounts, accNum);
+                    if(acc != null) {
+                        System.out.println("Enter Money to be Withdrawn: ");
+                        acc.checkBalance();
+                    }
+                    else {
+                        System.out.println("Account not found.");
+                    }
+                    break;
+                case 6:
                     choice = 0;
                     break;
                 default:
@@ -144,7 +210,10 @@ public class BankAccountSystem {
                     break;
             }
         }
-
         sc.close();
+    }
+
+    public static void main(String[] args) {
+        start();
     }
 }
