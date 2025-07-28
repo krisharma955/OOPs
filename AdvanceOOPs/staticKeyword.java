@@ -26,13 +26,11 @@ public class staticKeyword {
         System.out.println(obj1.getBalance());
         System.out.println(obj1.getCounter());
 
-        System.out.println();
-
         BankAccount obj2 = new BankAccount("Lewis", 2000);
         System.out.println(obj2.getName());
         System.out.println(obj2.getBalance());
         System.out.println(obj2.getCounter());
 
-        System.out.println(BankAccount.counter );
+        System.out.println(BankAccount.counter);
     }
 }
