@@ -69,7 +69,6 @@ public class BankAccountSystem {
                 System.out.println("Account Opened Successfully.");
                 afterCharges();
                 showAccountDetails();
-                count++;
             }
             else {
                 System.out.println("Minimum to open a Savings Account is 1000.");
