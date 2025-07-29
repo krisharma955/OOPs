@@ -38,6 +38,7 @@ public class oneTmanyAss {
         Student student2 = new Student("Carlos", 55);
 
         College college = new College("F1");
+        System.out.println(college.name);
         college.addStudent(student1);
         college.addStudent(student2);
         college.printAllStudents();
