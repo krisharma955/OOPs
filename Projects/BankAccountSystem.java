@@ -9,9 +9,7 @@ public class BankAccountSystem {
         public static int count = 0;
 
         public BankAccount(String accountHolderName, double balance) {
-            // System.out.println("Enter Account Holder's Name: ");
             this.accountHolderName = accountHolderName;
-            // System.out.println("Enter Amount to be deposied: ");
             this.balance = balance;
             this.accountNumber = ++accountNumberGenerator;
             System.out.println("Account Successfully Created.");
@@ -20,13 +18,12 @@ public class BankAccountSystem {
             count++;
         }
 
-        public BankAccount(String accountHolderName) {
-            this.accountHolderName = accountHolderName;
-            balance = 500;
-        }
+        // public BankAccount(String accountHolderName) {
+        //     this.accountHolderName = accountHolderName;
+        //     balance = 500;
+        // }
 
         public void deposit(double amount) {
-            // System.out.println("Enter the amount to be deposited: ");
             if(amount >= 0) {
                 balance += amount;
                 System.out.println(amount+ " successfully deposited.");
@@ -38,7 +35,6 @@ public class BankAccountSystem {
         }
 
         public void withdraw(double amount) {
-            // System.out.println("Enter the money to be withdrawn: ");
             if(balance >= amount) {
                 balance -= amount;
                 System.out.println(amount+ " successfully withdrawn.");
@@ -67,7 +63,7 @@ public class BankAccountSystem {
 
     public static class SavingsAccount extends BankAccount {
         public SavingsAccount(String accountHolderName, double balance) {
-            super(accountHolderName);
+            super(accountHolderName, balance);
             if(balance >= 1000) {
                 this.balance = balance;
                 System.out.println("Account Opened Successfully.");
@@ -116,12 +112,12 @@ public class BankAccountSystem {
     }
 
     public static BankAccount findAccount(ArrayList<BankAccount> accounts, int accNumber) {
-            for(int i = 0; i<accounts.size(); i++) {
-                if(accounts.get(i).accountNumber == accNumber) {
-                    return accounts.get(i);
-                }
+        for(int i = 0; i<accounts.size(); i++) {
+            if(accounts.get(i).accountNumber == accNumber) {
+                return accounts.get(i);
             }
-            return null;
+        }
+        return null;
     }
 
     public static void Menu() {
