@@ -25,9 +25,9 @@ public class DeepCloning {
         @Override
         protected Object clone() throws CloneNotSupportedException{
             //deep cloning
-            Student student = (Student) super.clone();
-            student.passport = (Passport) passport.clone(); //individually clone the object
-            return student;
+            Student clonedstudent = (Student) super.clone(); //shallow copy
+            clonedstudent.passport = (Passport) passport.clone(); //individually clone the object
+            return clonedstudent;
         }
     }
     public static void main(String[] args) throws CloneNotSupportedException{
