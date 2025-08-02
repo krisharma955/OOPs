@@ -81,7 +81,5 @@ public class generics {
         // ls.add("lando");
         // ls.add(12.2);
         // print(ls);
-        
-        
     }
 }
