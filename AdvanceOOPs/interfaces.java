@@ -1,9 +1,9 @@
 package AdvanceOOPs;
 
 public class interfaces {
-    //Abstarction implemented via interface
+    //Abstraction implemented via interface
     interface CarInterface {
-        static final int cnt = 0; //* final variable - can't be changed or modified but can be accessed
+        final int cnt = 0; //* final variable - can't be changed or modified but can be accessed
         public void start();
         public void numberOfGears();
 
